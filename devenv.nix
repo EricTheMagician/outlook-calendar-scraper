@@ -30,7 +30,7 @@
     in
     {
       enable = true;
-      directory = "./src";
+      directory = "./outlook_scraper";
       package = (
         pkgs.python314.withPackages (ps: [
           ps.niquests
