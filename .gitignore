@@ -9,6 +9,9 @@ devenv.local.yaml
 # pre-commit
 .pre-commit-config.yaml
 
+# calendar output
+calendar.ics
+
 # python
 .mypy_cache
 *.pyc
