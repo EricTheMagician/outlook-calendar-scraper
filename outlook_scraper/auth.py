@@ -5,7 +5,11 @@ log = logging.getLogger("scraper.auth")
 
 
 async def authenticate(
-    page: Page, email: str = None, get_email=None, get_password=None, get_totp=None
+    page: Page,
+    email: str | None = None,
+    get_email=None,
+    get_password=None,
+    get_totp=None,
 ):
     """
     Handles the Microsoft login flow.

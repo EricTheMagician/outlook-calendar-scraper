@@ -11,7 +11,7 @@ log = logging.getLogger("scraper.main")
 
 
 async def run_outlook_scraper(
-    email: str = None,
+    email: str | None = None,
     headless: bool = False,
     get_email=None,
     get_password=None,
