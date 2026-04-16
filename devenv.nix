@@ -21,33 +21,26 @@
   ];
 
   # https://devenv.sh/languages/
-  languages.python =
-    let
-      ics-no-check = pkgs.python313Packages.ics.overridePythonAttrs (old: {
-        doCheck = false;
-        doInstallCheck = true;
-      });
-    in
-    {
-      enable = true;
-      directory = "./outlook_scraper";
-      package = (
-        pkgs.python314.withPackages (ps: [
-          ps.niquests
-          ps.playwright
-          ps.playwright-stealth
-          ps.pytest
-          ps.python-dateutil
-          ps.types-python-dateutil
-          (ps.ics.overridePythonAttrs (old: {
-            doCheck = false;
-            doInstallCheck = true;
-          }))
-        ])
-      );
-      lsp.package = pkgs.pyrefly;
-      venv.enable = true;
-    };
+  languages.python = {
+    enable = true;
+    directory = "./outlook_scraper";
+    package = (
+      pkgs.python314.withPackages (ps: [
+        ps.niquests
+        ps.playwright
+        ps.playwright-stealth
+        ps.pytest
+        ps.python-dateutil
+        ps.types-python-dateutil
+        (ps.ics.overridePythonAttrs (old: {
+          doCheck = false;
+          doInstallCheck = true;
+        }))
+      ])
+    );
+    lsp.package = pkgs.pyrefly;
+    venv.enable = true;
+  };
 
   # https://devenv.sh/processes/
   # processes.dev.exec = "${lib.getExe pkgs.watchexec} -n -- ls -la";
@@ -75,10 +68,9 @@
   '';
 
   # https://devenv.sh/tasks/
-  # tasks = {
-  #   "myproj:setup".exec = "mytool build";
-  #   "devenv:enterShell".after = [ "myproj:setup" ];
-  # };
+  tasks = {
+    "scraper:run".exec = "python main.py";
+  };
 
   # https://devenv.sh/tests/
   enterTest = ''
